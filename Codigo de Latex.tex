@@ -1,0 +1,625 @@
+\documentclass[11.5pt]{article}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish]{babel}
+\usepackage[left=2.3cm,right=2.3cm,top=2.3cm,bottom=2.3cm]{geometry}
+\author{Jaritza Nataly Salazar Portilla}
+\begin{document}
+\begin{titlepage}
+\centering
+\bfseries\large{Sistema De Ecuaciones Diferenciales Lineales De Primer Orden\par}
+\vspace{1cm}
+\scshape{Facultad de Ingenieria Civil\par}
+\vspace{1cm}
+\scshape{Ecuaciones Diferenciales\par}
+\vspace{1cm}
+\scshape{Universidad del Cauca\par}
+\vspace{6cm}
+\scshape{Profesor:Jhonatan Collazos\par}
+\vspace{1cm}
+\scshape{Autor:Jaritza Nataly Salazar Portilla\par}
+\vfill
+\large{Fecha:29 De Agosto Del 2022}
+
+
+\vspace{0.5cm}
+
+\end{titlepage}
+
+\pagebreak
+\tableofcontents
+\pagebreak
+
+\section{Introducción}
+Partimos desde el sistema de ecuaciones diferenciales ,esto con ayuda de la transformada de Laplace en este documento se abordara el metodo de matrices para el desarrollo de ecuaciones diferenciales lineales de primer orden.
+
+\section{sistema de ecuaciones diferenciales lineales de primer orden}
+\subsection{Repaso de conceptos}
+\subsection*{Ecuación diferencial lineal}
+Para qué esta se concidere una ecuación diferencial lineal debe de poseer  las siguientes características: \\
+ \begin{itemize}
+ \item La variable dependiente y todas sus derivadas deben ser de primer grado 
+ $\frac{dy}{•dx}$ o y' pero no de la forma $(y')^2$  o  $ y')^3 $.
+ \item Los coeficientes de la variable dependiente y sus derivadas dependen de la variable independiente (5xy' en donde 5x es el coeficiente  y Y es la variable dependiente  :tener en cuenta que no se puede repetir la variable Y ( \textbf{5yy'})).
+ \item La linealidad solo se exige para la variable dependiente y sus derivadas.
+ 
+ \end{itemize}
+La forma mas comun de observarla es   :
+$$a_n(x)y^n+a_{n-1}(x)y^{•n-1}+...+a_1(x)y'+a_0(x)y = g(x)$$
+
+\subsection*{Sistema de primer orden }
+Tambien llamadas ecuaciones diferenciales de primer orden estas se representan de la forma:\\
+\textbf{$$ \frac{dx_1}{dt} = g_1(t,x_1,x_2,...,x_n)$$}
+\textbf{$$ \frac{dx_2}{dt} = g_2(t,x_1,x_2,...,x_n)$$}
+
+\textbf{$$ \frac{dx_n}{dt} = g_n(t,x_1,x_2,...,x_n)$$}
+\subsection{Sistemas Lineales}
+Cuando cada una de las funciones $ g_1, g_2,..., g_n $como se representa en el sistema de primer orden es lineal en las variables dependientes $ x_1,x_2,...,x_n$ se obtiene de la \textbf{forma normal} de un sistema de ecuaciones lineales de primer orden estas se expresan de la forma:
+
+\textbf{$$\frac{dx_1}{dt}=a_{11}(t)x_1 + a_{21}(t)x_2 + a_{1n}(t)x_n + f_1(t)$$}
+\textbf{$$\frac{dx_2}{dt}=a_{21}(t)x_1 + a_{22}(t)x_2 + a_{2n}(t)x_n + f_2(t)$$}
+\textbf{$$\frac{dx_n}{dt}=a_{n1}(t)x_1 + a_{n2}(t)x_2 + a_{nn}(t)x_n + f_n(t)$$}
+
+Nos referimos a este como un \textbf{sistema lineal} los coeficientes $a_{ij}$ asi como  la función $f_i$ son continuas ,cuando f tiene un valor diferente de $ 0$ se lo considera no homogeneo.
+
+\subsubsection{Forma matricial de un sistema lineal}
+Cada uno de estos \textbf{X,A}(t), y \textbf{F}(t) deben denotar matrices respectivas.\\
+El sistema de ecuaciones diferenciales lineales de primer orden  se puede escribir como\\
+
+\begin{equation}
+\left.
+X=\begin{pmatrix}
+ X_1(t)\\
+ X_2(t)\\
+ \vdots&\vdots\\
+ X_n(t)\\
+\end{pmatrix}
+A(t)=\begin{pmatrix}
+ a_{11} & a_{12}& \cdots& a_{1n(t)}\\ 
+ a_{21} & a_{22}& \cdots& a_{2n(t)}\\  
+ \vdots&\vdots\\
+ a_{n1} & a_{n2}& \cdots& a_{nn(t)}\\ 
+ 
+\end{pmatrix}\\
+F(t)=\begin{pmatrix}
+ f_1(t)\\
+ f_2(t)\\
+ \vdots\\
+  f_n(t)\\
+\end{pmatrix}\\
+\right.
+\end{equation}
+\vspace{0.5cm}
+
+El sistema de ecuaciones diferenciales de primer orden se puede escribir de la manera\\
+
+\begin{equation}
+\left.
+\frac{d}{dt}=\begin{pmatrix}
+ X_1(t)\\
+ X_2(t)\\
+ \vdots&\vdots\\
+ X_n(t)\\
+\end{pmatrix}
+=
+A(t)=\begin{pmatrix}
+ a_{11} & a_{12}& \cdots& a_{1n(t)}\\ 
+ a_{21} & a_{22}& \cdots& a_{2n(t)}\\  
+ \vdots&\vdots\\
+ a_{n1} & a_{n2}& \cdots& a_{nn(t)}\\ 
+ 
+\end{pmatrix}\\
+\begin{pmatrix}
+ X_1(t)\\
+ X_2(t)\\
+ \vdots&\vdots\\
+ X_n(t)\\
+\end{pmatrix}
++
+\begin{pmatrix}
+ f_1(t)\\
+ f_2(t)\\
+ \vdots\\
+  f_n(t)\\
+\end{pmatrix}\\
+\right.
+\end{equation}
+Un ejemplo no homegeneo es \\
+\begin{equation}
+\left.
+X'=\begin{pmatrix}
+-2&1&0\\
+ 3&-4&1\\
+ 4&-5&3\\
+\end{pmatrix}
+X +
+\begin{pmatrix}
+2-t\\ 
+1+3t\\  
+5-2t\\ 
+ 
+\end{pmatrix}\\
+\right.
+\end{equation}
+
+O de la forma \textbf{$X =AX + F.$}
+\subsubsection*{Vector solución}
+Un \textbf{intervalo solucion} en un intervalo $l$ es cualquier matriz columna \\
+\begin{equation}
+\frac{d}{dt}=\begin{pmatrix}
+ X_1(t)\\
+ X_2(t)\\
+ \vdots\\
+ X_n(t)\\
+\end{pmatrix}
+\end{equation}
+cuyos elementos son funciones derivables que satisfacen el sistema ($X =AX + F$)en el
+intervalo Un vector solución  es, por supuesto, equivalente a n ecuaciones escalares 
+$x1 =\phi_1(t),x2  =\phi_(t), . . . , x_n=\phi_n(t)$ y se puede interpretar desde el punto de vista geométrico como un conjunto de ecuaciones paramétricas de una curva en el espacio..\\
+
+\vspace{0.6cm}
+Para \textbf{sistemas no homogeneos} \textbf{una solución particular$ X_p$} en el intervalo $l$ cualquier vector libre de parámetros arbitrarios,cuyos elementos son funciones que satisfacen el sistema no homogeneo.\\
+\vspace{0.6cm}\\
+\begin{tabular}{|c|}
+ \hline 
+\textbf{Solución general:sistemas no homogeneos} \\ 
+ \hline 
+ Sea $X_p$ una solución dada del sistema no homogéneo ($X =AX + F.$) en un intervalo $I$ y sea\\ 
+ $ X_{c}= c_{1}X_{1} +c_{2}X_{2}++c_{n}X_{n} $ \\ 
+que denota la solución general en el mismo intervalo del sistema homogéneo asociado. Entonces \\
+la solución general del sistema no homogéneo en el intervalo es \\ 
+ $X =X_c+X _p $\\
+ La solución general Xc del sistema homogéneo relacionado (X'= AX) se llama función complementaria \\
+\\ del sistema no homogéneo ($X =AX + F.$).\\
+ \hline 
+ \end{tabular}  
+ 
+\subsubsection{Sistemas lineales no homogeneos}
+vimos que la solución general de un sistema lineal no homogéneo $X_c+X_p$, donde $X_c =c_1X_1+c_2X_2+\cdots+c_nX_n$es la función complementaria o solución general del sistema lineal homogéneo asociado $X'=AX $y$ X_p $ es cualquier solución particular del sistema no homogéneocuando la matriz de coeficientes A era una matriz de constantes n*n. En esta sección consideraremos dos métodos para obtener $X_p$.
+
+Los métodos de coeficientes indeterminados y variación de parámetros empleados  $X =AX + F$ para determinar soluciones particulares de EDO lineales no homogéneas, se pueden adaptar
+a la solución de sistemas lineales no homogéneos X=AX +F(t). De los dos métodos, variación
+de parámetros es la técnica más poderosa. Sin embargo, hay casos en que el método de coeficientes
+indeterminados provee un medio rápido para encontrar una solución particular.
+\subsubsection{Coeficientes indeterminados}
+Esun procedimiento utilizado para obtener una solución particular y p(x) para la ED lineal no homogenea con coeficientes constantes.
+\paragraph{Las suposiciones }
+el método de coeficientes indeterminados consiste en hacer una suposición bien informada acerca de la forma de un vector $X_p$ ; la suposición es originada por los tipos de funciones que constitu-
+yen los elementos de la matriz columna F(t).No es de sorprender que la versión matricial de los coeficientes indeterminados sea aplicable a$ X=AX +F(t$) sólo cuando los elementos de A son constantes y los elementos de F(t) son constantes, polinomios, funciones exponenciales, senos y cosenos o sumas y productos finitos de estas funciones.\\
+\vspace{0.6cm}\\
+\textbf{Ejemplo}
+Un ejemplo no homegeneo es \\
+\vspace{0.4cm}\\
+Resuelva el sistema\\
+$$
+\left.
+X'=\begin{pmatrix}
+-1&2\\
+-1&1\\
+\end{pmatrix}
+X +
+\begin{pmatrix}
+-8t\ 
+3\\  
+\end{pmatrix}\\
+en (-\infty,\infty).
+\right.
+$$
+La ecuación característica de la matriz de coeficiente \textbf{A}
+$$
+\left.
+det(A-\lambda l)=\begin{vmatrix}
+-1-\lambda&2\\
+-1&1-\lambda\\
+\end{vmatrix}
+=\lambda^2+1=0
+\right.
+$$
+produce las eigenvalores complejos $\lambda_1=i y \lambda_2=\lambda_1=-i.$ se encuentra que :
+$$
+\left.
+X'=c_1\begin{pmatrix}
+cost+sent\\
+cost\\
+\end{pmatrix}
+ +c_2
+\begin{pmatrix}
+cost-sent\\ 
+-sent\\  
+\end{pmatrix}\\
+\right.
+$$
+\textbf{F}(t) es un vector constantes ,se supone un vector solución particular constante $\textbf{x}_p=\begin{pmatrix}
+a_1\\
+a_2\\
+\end{pmatrix}$
+.Sustituyendo esta última suposición en el sistema original e igualando la entrada se tiene que \\
+$$0=-a_1+2b_1-8$$
+$$0=-a_1+b_1+3$$\\
+Al resolver este sitema algebraico se obtiene $a_1=14 $ y $  b_1 =11$ y así, una solución particular 
+$X_p=\begin{pmatrix}
+14\\
+11\\
+\end{pmatrix}$
+.La solución general del sistema original de ED en el intervalo $(-\infty,\infty)$ es entonces $ X=X_c+X_p o$
+$$
+\left.
+X'=c_1\begin{pmatrix}
+cost+sent\\
+cost\\
+\end{pmatrix}
+ +c_2
+\begin{pmatrix}
+cost-sent\\ 
+-sent\\  
+\end{pmatrix}\\
++
+\begin{pmatrix}
+14\\
+11\\
+\end{pmatrix}
+\right.
+$$
+\pagebreak
+
+\textbf{Forma de $X_p$}\\
+Determine la forma de un vector solución particular $X_p$
+\vspace{0.6cm}\\
+$$\frac{dx}{dt}=5x+3y-2e^{-t}+1\\$$
+$$\frac{dy}{dt}=-x+y+e^{-t}-5t+7$$
+\vspace{0.6cm}\\
+\textbf{(Desarrollo)}  \textbf {F}(t)  se puede escribir en términos  matricial como lo seria \\
+\begin{equation}
+\left.
+\textbf{F}(t)=\begin{pmatrix}
+-2\\
+ 1\\
+\end{pmatrix}
+e_{-t} +
+\begin{pmatrix}
+0\\ 
+-5\\  
+\end{pmatrix}\\
+t+
+\begin{pmatrix}
+1\\ 
+7\\  
+\end{pmatrix}\\
+\begin{pmatrix}
+0\\ 
+-5\\  
+\end{pmatrix}\\
+\right.
+\end{equation}
+una suposición natural para la  solución particular sería:\\
+$$
+\textbf{X}_p=\begin{pmatrix}
+a_3\\
+ b_3\\
+\end{pmatrix}
+e_{-t} +
+\begin{pmatrix}
+a_2\\ 
+b_2\  
+\end{pmatrix}\\
+t+
+\begin{pmatrix}
+a_1\\ 
+b_1\\  
+\end{pmatrix}\\$$
+\subsubsection{Variación de parametros}
+\paragraph{Una matriz fundamental}
+si $ X_1,X_2\cdots,X_n $ es un conjunto fundamental de soluciones del sistema homogéneo  $X'=AX$en el intervalo I, entonces su solución general en el intervalo es la combinación lineal $X=c_1X_1+c_2X_2+\cdots+c_nX_n$ o
+\begin{equation}
+\left.
+X=c_1
+\begin{pmatrix}
+x_{11}\\
+x_{21}\\
+\vdots\\\\
+x_{n1}
+\end{pmatrix}
++c_2
+\begin{pmatrix}
+x_{12}\\
+x_{22}\\
+\vdots\\\\
+x_{n2}
+\end{pmatrix}
++
+\cdots+c_n
+\begin{pmatrix}
+x_{1n}\\
+x_{2n}\\
+\vdots\\\\
+x_{nn}
+\end{pmatrix}
+=
+\begin{pmatrix}
+c_1x_{11}+c_2x_{12}+\cdots+c_nx_{1n}\\
+c_1x_{21}+c_2x_{22}+\cdots+c_nx_{2n}\\
+\vdots\\\\
+c_1x_{n1}+c_2x_{n2}+\cdots+c_nx_{nn}\\
+\end{pmatrix}
+\right.
+\end{equation}
+La última matriz en (11) se reconoce como el producto de una matriz $n \times n$ con una matriz
+n  1. En otras palabras, la solución general (1) se puede escribir como el producto.\\
+$$\textbf{X}=\Phi(t)C$$
+donde C es un vector columna de $n\times1$ constantes arbitrarias $c_1,c_2, \cdots, c_n$ y la matriz
+$ n \times n $, cuyas columnas consisten en los elementos de los vectores solución del sistema $\textbf{X=AX}$.
+\begin{equation}
+\phi(t)=\begin{pmatrix}
+x_{11}+x_{12}+\cdots+x_{1n}\\
+x_{21}+2x_{22}+\cdots+x_{2n}\\
+\vdots\\\\
+x_{n1}+x_{n2}+\cdots+x_{nn}\\
+\end{pmatrix}
+\end{equation}
+Esta se llama \textbf{matriz fundamental} del sistema en el intervalo.
+\subsubsection*{Variación de parámetros}
+Nos preguntamos si es posible reemplazar la matriz de constantes C  por una
+matriz columna de funciones.
+
+$$U(t)=\begin{pmatrix}
+u_1(t)\\
+u_2(t)\\
+\vdots\\
+u_n(t)\\
+\end{pmatrix}$$
+Por lo que $X_p=\phi(t)U(t)$ es una solución particular del sistema no homogéneo\\
+X'=AX+F(t).\\
+Por la regla del producto la derivada de la última expresión eS\\
+$$X_p =\phi(t)U'(t)+\phi'(t)U(t). (1)$$
+Observe que el orden de los productos en (1) es muy importante. Puesto que U(t) es una
+matriz columna, los productos $U'(t)\phi(t)$ y $U'(t)\phi'(t)$ no están definidos.Sustituyendo se obtiene:\\
+$$\phi(t)U'(t)+\phi'(t)U(t)= A\phi(t)U(t)+F(t).$$
+ se convierte en:\\
+ $$\phi(t)U'(t)+\phi'(t)U(t)= A\phi(t)U(t)+F(t).$$
+$$\phi(t)U'(t)=F(t).$$
+\vspace{0.1cm}\\
+Multiplicando ambos lados de la ecuación  por 1(t), se obtiene\\
+\vspace{0.1cm}\\
+\begin{equation}
+U'(t) =\phi ^{-1}(t)F(t). por.. tanto. U(t) =\int \phi^{-1}(t)F(t)dt.\\
+\end{equation}  
+
+Puesto que $X_p=\phi$(t)U(t),se concluye que una solución particular es\\
+$$X_p=\phi(t)\int \phi^{-1}(t)F(t)dt$$
+Para calcular la integral indefinida de la matriz columna $ \phi ^{-1}(t)F(t)$ , se integra cada entrada. Así, la solución general del sistema es  $X = X_c + Xp$ o\\
+$$X =\phi( t)C +\phi(t)\int \phi^{-1}(t)F(t)dt$$\\
+Observe que no es necesario usar una constante de integración en la evaluación de
+$\int \phi ^{-1}(t)F(t)dt$\\
+
+\subsection{Matriz Exponencial}
+
+Se vio en \textbf{$X =AX + F.$} que la solución general de la ecuación diferencial lineal única de primer orden\\ x'= ax + f(t), donde a es una constante, se puede expresar como:\\
+$$X=X_c+X_p=ce^{at}+e^{at}\int_{t}^{t_0} \!e^{-as}f(s)\,ds$$
+
+Para un sistema no homogéneo de ecuaciones diferenciales lineales de primer orden,
+
+se puede demostrar que la solución general de X=AX*t, donde A es una matriz $n\times n$     , es
+$$X=X_c+X_p=ce^{\lambda t}+e^{\lambda t}\int_{t}^{t_0} \!e^{-\lambda s}F(s)\,ds$$
+Puesto que la matriz exponencial $e^{At}$ es una matriz fundamental, siempre es no singular y
+$e^{-\lambda s}=(e^{As})^{-1}$ En la práctica, $e^{-At}$ se puede obtener de $e^{At}$ al reemplazar t por –s.\\
+\vspace{0.6cm}\\
+\textbf{CÁLCULO DE e $ A_t$}
+La definición de $e^{At}$ siempre se puede usar para calcular $e^{At}$. Sin embargo, la utilidad práctica  está limitada por el hecho de que los elementos de $e^{At}$ son series de potencias en t. Con un deseo natural de trabajar con cosas simples y familiares, se trata de reconocer si estas series definen una función de forma cerrada. Por fortuna, hay muchas formas alternativas de calcular $e^{At}$; la siguiente explicación muestra cómo se puede usar la transformada de Laplace.
+\subsubsection{Uso de la transformada de laplace }
+Vimos en  que $X=e^{At}$ es una solución de $\textbf{X'=AX}$. De hecho, puesto que $e^{A0}= I$, $X =e^At$ es una solución de problema con valores iniciales.\\
+$$X'=AX , X(0)=1.$$
+Si $x( s )=\mathcal{L} X ( t )=\mathcal{L}  e^{A t} $ , entonces la transformada de Laplace  es\\
+$$s\textbf{x}(s)-X(0)=Ax(s) \cdots ( sI-A )x(s)=I $$.
+Multiplicando la última ecuación por $(sI -A)^{-1}$ se tiene que $x(s)=(sI-A)^{-1} I = (sI-A)^{-1}$. En otras palabras,$\mathcal{L}{ e ^{At }}=( sI- A )^{-1} $ o
+$$e^{At}=\mathcal{L}^{-1}{(sI-A)^{-1}}$$
+\textbf{Ejemplo }
+Use la transformada de Laplace para calcular $e^{At}$para
+$A=\begin{pmatrix}
+1&-1\\
+2&-2\\
+\end{pmatrix}$
+\textbf{Solución} Primero calcule la matriz sI – A y determine su inversa:\\
+\vspace{0.3cm}\\
+$$sI-A=\begin{pmatrix}
+s-1&1\\
+-2&s+2\\
+\end{pmatrix}$$,\\
+\vspace{0.3cm}\\
+$$\left.
+(sI-A)^{-1}=\begin{pmatrix}
+s-1&1\\
+-2&s+2\\
+\end{pmatrix}^{-1}
+\begin{bmatrix}
+\frac{s+2}{s(s+1)}&\frac{-1}{s(s+1)}\\
+\frac{2}{s(s+1)}&\frac{s-1}{s(s+1)}\\
+\end{bmatrix}
+\right.$$
+\vspace{0.3cm}\\
+Entonces, descomponiendo las entradas de la última matriz en fracciones parciales:\\
+
+\begin{large}
+$$e^{At}=\begin{bmatrix}
+\frac{2}{s}-\frac{s+2}{s(s+1)}&-\frac{1}{s}\frac{-1}{s(s+1)}\\
+\frac{2}{s}-\frac{2}{s(s+1)}&-\frac{1}{s}\frac{s-1}{s(s+1)}\\
+\end{bmatrix}$$
+
+\end{large}
+Se deduce que la transformada de Laplace inversa  proporciona el resul-
+tado deseado,\\
+$$e^{At}=\begin{bmatrix}
+2-e^{-t}&-1+e^{-t}\\
+2-2e^{-t}&-1+2e^{-t}\\
+\end{bmatrix}$$
+
+
+\section{ Ejercicios sistema de ecuaciones diferenciales lineales de primer orden }
+
+\textbf{Primer ejercicio} Resolver  el siguiente sistema de ecuaciones diferenciales  lineales de primer orden\\
+ \vspace{0.2cm}\\
+\begin{equation}
+X'=\begin{pmatrix}
+-3&1\\
+2&-4\\
+\end{pmatrix}
+X+
+\begin{pmatrix}
+3t\\
+e^{-t}\\
+\end{pmatrix}
+\end{equation}
+\vspace{0.2cm}\\
+\textbf{Solución} Primero resolvemos el sistema homogéneo asociado
+\vspace{0.2cm}\\
+\begin{equation}
+X'=\begin{pmatrix}
+-3&1\\
+2&-4\\
+\end{pmatrix}
+X
+\end{equation}
+la ecuación característica de la matriz de coeficientes es
+\vspace{0.2cm}\\
+ 
+$$ det(A-\lambda l)=\begin{vmatrix}
+-3-\lambda&1\\
+2&-4-\lambda\\
+\end{vmatrix}
+=(\lambda+2)(\lambda+5)=0$$\\
+por lo que los eigenvalores son $\lambda_1=-2$ y $\lambda_2 =-5$. Con el método usual se encuentra que los eigenvectores correspondientes a $\lambda_1 $y$ \lambda_2 $ son, respectivamente,$K_1=\begin{pmatrix}
+1\\
+1\\
+\end{pmatrix}
+$ y $
+K_1=\begin{pmatrix}
+1\\
+-2\\
+\end{pmatrix}$. Entonces, los vectores solución del sistema (9) son\\
+$$X_1=\begin{pmatrix}
+1\\
+1\\
+\end{pmatrix}e^{-2t}=
+\begin{pmatrix}
+e^{-2t}\\
+e^{-2t}\\
+\end{pmatrix}
+ ..y .. X_2=\begin{pmatrix}
+1\\
+-2\\
+\end{pmatrix}e^{-5t}=
+\begin{pmatrix}
+e^{-5t}\\
+-2e^{-5t}\\
+\end{pmatrix}$$\\
+\vspace{0.3cm}\\
+$X_p=\phi(t)\int\phi^{-1}F(t)dt=\begin{pmatrix}
+e^{-2t}&e^{-5t}\\
+e^{-2t}&-2e^{-5t}\\
+\end{pmatrix}
+\int
+\begin{pmatrix}
+\frac{2}{3}e^{2t}&\frac{1}{3}e^{2t}\\
+\frac{1}{3}e^{2t}&-\frac{1}{3}e^{5t}\\
+\end{pmatrix}
+\begin{pmatrix}
+3t\\
+e^{-t}\\
+\end{pmatrix}dt$\\
+\vspace{0.3cm}\\
+$=\begin{pmatrix}
+e^{-2t}&e^{-5t}\\
+e^{-2t}&-2e^{-5t}
+\end{pmatrix}
+\int
+\begin{pmatrix}
+2te^{2t}+\frac{1}{3}e^{2t}\\
+te^{5t}-\frac{1}{3}e^{5t}\\
+\end{pmatrix}dt$
+\vspace{0.3cm}\\
+$=\begin{pmatrix}
+e^{-2t}&e^{-5t}\\
+e^{-2t}&-2e^{-5t}
+\end{pmatrix}
+\begin{pmatrix}
+te^{2t}+\frac{1}{2}e^{2t}+\frac{1}{3}e^t\\
+te^{5t}-\frac{1}{25}e^{5t}-\frac{1}{12}e^{4t}\\
+\end{pmatrix}dt$
+\vspace{0.3cm}\\
+$
+=\begin{pmatrix}
+\frac{6}{5}t-\frac{27}{50}+\frac{1}{4}e^{-t}\\
+\frac{3}{5}t-\frac{21}{50}+\frac{1}{2}e^{-t}\\
+\end{pmatrix}dt$
+\vspace{0.4cm}\\
+Por tanto apartir de (9) la solución de (10) en el intervalo es
+\vspace{0.4cm}\\
+$X=\begin{pmatrix}
+e^{-2t}&e^{-5t}\\
+e^{-2t}&-2e^{-5t}\\
+\end{pmatrix}
+\begin{pmatrix}
+c_1\\
+c_2\\
+\end{pmatrix}
++\begin{pmatrix}
+\frac{6}{5}t-\frac{27}{50}+\frac{1}{4}e^{-t}\\
+\frac{3}{5}t-\frac{21}{50}+\frac{1}{2}e^{-t}\\
+\end{pmatrix}dt$
+\vspace{0.2cm}\\
+$=C_1\begin{pmatrix}
+1\\
+1\\
+\end{pmatrix}
+e^{-2t}+c_2
+\begin{pmatrix}
+1\\
+-2\\
+\end{pmatrix}
+e^{-5t}+
+\begin{pmatrix}
+\frac{6}{5}\\
+\frac{3}{5}\\
+\end{pmatrix}
+t-
+\begin{pmatrix}
+\frac{27}{50}\\
+\frac{21}{50}\\
+\end{pmatrix}+
+\begin{pmatrix}
+\frac{1}{4}\\
+\frac{1}{2}\\
+\end{pmatrix}e^{-t}$
+\pagebreak
+\section{Referencias}
+\,\\
+\vspace{0.2cm}\
+\,CAT- MATH,Solución general de los sistemas lineales no homogéneos (20 de abril de 2020). youtube. Obtenido de //hhttps://youtu.be/4nav-GCk0yU\,\\
+\,\\
+\,Dennis G. Zill,Cullen,ECUACIONES DIFERENCIALES,con problemas con valores en la frontera (10 de Noviembre 2018)\\
+\,\\
+\,C. Henry Edwards.David E. Penney. Henry Edwards,Ecuaciones diferenciales y problemas con valores en la frontera (15 noviembre de 2018). . Obtenido de//https://mathunam.files.wordpress.com/2018/10/edwards-ecuaciones-diferenciales.pdf\,\\
+
+
+\end{document}  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
